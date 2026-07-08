@@ -117,35 +117,544 @@
   ]
 }
   </script>
-  <style>
-:root { --fg:#1a1a2e; --muted:#5c5c72; --accent:#2d5bff; --bg:#ffffff; --card:#f6f7fb; --line:#e6e8f0; }
-* { box-sizing: border-box; }
-body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; color:var(--fg); background:var(--bg); line-height:1.7; }
-main { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-header { padding: 2rem 0 1rem; border-bottom: 2px solid var(--line); margin-bottom: 1.5rem; }
-.eyebrow { color: var(--accent); font-weight: 600; margin: 0 0 .25rem; letter-spacing: .02em; }
-h1 { font-size: 2.4rem; margin: 0; }
-h2 { font-size: 1.25rem; margin: 2rem 0 .5rem; padding-left: .6rem; border-left: 4px solid var(--accent); }
-section p { margin: .25rem 0 0; }
-ul { margin: .5rem 0 0; padding-left: 1.2rem; }
-li { margin: .25rem 0; }
-.facts, .symbols { list-style: none; padding: 1rem 1.2rem; background: var(--card); border-radius: 12px; }
-.faq details { border: 1px solid var(--line); border-radius: 10px; padding: .5rem .9rem; margin: .5rem 0; }
-.faq summary { cursor: pointer; font-weight: 600; }
-.faq details p { margin: .5rem 0 .25rem; color: var(--muted); }
-.sources { font-size: .9rem; color: var(--muted); }
-a { color: var(--accent); }
-footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
-</style>
+  <script id="region-data" type="application/json">
+{
+  "characteristics": "연제구는 인구 약 21만 명(2025년 기준)이 12㎢ 남짓한 좁은 면적에 밀집한 고밀도 주거·행정 도시입니다. 부산광역시청을 비롯해 부산고등법원·지방법원·가정법원·고등검찰청·지방검찰청 등 30곳이 넘는 광역 공공기관이 집중돼, 부산 전역의 행정·사법 수요가 이곳으로 모입니다. 거제동 법조타운을 중심으로 변호사·법무사 사무소와 관련 서비스업이 발달했고, 연산동 로터리 일대는 도심 상업·유흥 상권으로 번화합니다. 관공서 종사자와 유동 인구가 많아 오피스와 아파트가 뒤섞인 도심 배후주거지 성격이 강합니다. 부산아시아드주경기장과 인접한 사직 체육시설군 덕분에 스포츠·대형 이벤트의 배후 생활권이기도 합니다. 제조업 기반보다 행정·법률·상업·서비스가 지역 경제를 이끄는, 부산에서 가장 관청 밀도가 높은 자치구입니다.",
+  "coords": {
+    "lat": 35.1763,
+    "lng": 129.0794
+  },
+  "cultural_heritage": [
+    {
+      "description": "배산 자락에 18기의 대형 봉분과 1천여 기의 중소형 무덤이 분포하는 삼국시대 고분군으로, 2017년 국가 사적으로 승격 지정된 부산의 핵심 매장문화재입니다.",
+      "name": "연산동 고분군 (사적 제539호)"
+    },
+    {
+      "description": "이중 토성 구조의 삼국시대 산성으로, 발굴을 통해 집수지 등 성곽 시설이 확인된 고대 방어유적입니다. 연산동 고분군과 함께 이 지역 고대 세력의 규모를 보여줍니다.",
+      "name": "배산성지"
+    },
+    {
+      "description": "연산동 고분군의 역사 자원을 활용해 연제구가 여는 지역 대표 축제로, 고대 무덤을 테마로 한 체험·공연 프로그램으로 주민과 방문객이 참여합니다.",
+      "name": "연제고분판타지축제"
+    },
+    {
+      "description": "거제동에 자리한 연극 중심의 소극장으로, 지역 극단의 공연과 소규모 문화 행사가 열리는 연제구의 생활밀착형 공연 공간입니다.",
+      "name": "한결아트홀"
+    }
+  ],
+  "faq": [
+    {
+      "answer": "연산동의 '연(蓮)'과 거제동의 '제(堤)'를 한 글자씩 따서 합친 이름으로, 1995년 동래구에서 분리되며 만들어진 신생구의 지명입니다.",
+      "question": "연제구라는 이름은 어떻게 지어졌나요?"
+    },
+    {
+      "answer": "1998년 부산광역시청이 연산동으로 이전했고 부산고등·지방법원과 검찰청 등 광역 사법기관이 거제동에 집중돼, 부산 전역의 행정·사법 기능이 모여 있기 때문입니다.",
+      "question": "연제구가 부산의 행정 중심지라고 불리는 이유는 무엇인가요?"
+    },
+    {
+      "answer": "배산 능선을 따라 18기의 거대한 봉분이 늘어선 삼국시대 고분군으로, 부산에서 유일하게 큰 봉분이 남아 있으며 2017년 사적 제539호로 지정되었습니다.",
+      "question": "연산동 고분군은 어떤 유적인가요?"
+    },
+    {
+      "answer": "금정산 범어사 부근에서 발원해 금정구와 동래구를 거쳐 연제구를 지난 뒤 수영강과 합류하는 약 14.1㎞ 하천으로, 강변에 시민공원과 자전거도로가 조성돼 있습니다.",
+      "question": "온천천은 어디서 흘러오나요?"
+    },
+    {
+      "answer": "2002년 부산 아시안게임과 한일월드컵이 열린 5만여 석 규모의 종합경기장으로, 지금은 축구 경기와 대형 콘서트, 아시아송페스티벌 등 문화·체육 행사가 열립니다.",
+      "question": "부산아시아드주경기장에서는 무엇을 하나요?"
+    },
+    {
+      "answer": "도시철도 1호선(시청·연산·교대역)과 3호선(배산·물만골·거제·종합운동장역)이 지나며, 연산역에서 1호선과 3호선을 환승할 수 있습니다.",
+      "question": "연제구는 지하철로 어떻게 갈 수 있나요?"
+    }
+  ],
+  "geography_nature": "연제구는 부산 도심의 중앙부에 자리하며 동쪽으로 해운대구·수영구, 서쪽으로 부산진구, 남쪽으로 남구, 북쪽으로 동래구와 맞닿아 있습니다. 남쪽에는 배산과 그 너머 황령산·금련산으로 이어지는 산지가 병풍처럼 둘러 있고, 이 산자락이 구의 남부 경계를 이룹니다. 구의 젖줄인 온천천은 금정산 범어사 부근에서 발원해 금정구·동래구를 거쳐 연제구를 관통한 뒤 수영강과 합류하는 약 14.1㎞의 하천으로, 강변을 따라 자전거도로와 야생화 단지가 조성돼 있습니다. 배산에서 북쪽으로 뻗은 낮은 능선과 온천천 주변의 저지대가 만나 시가지가 발달한 구조입니다. 전체 면적은 약 12.08㎢로 부산 자치구 가운데 작은 편에 속해, 산지와 하천을 뺀 평지에 인구와 관청이 조밀하게 들어차 있습니다. 바다에 직접 면하지 않는 내륙형 자치구라는 점도 해안 구들과 구별되는 지형적 특징입니다.",
+  "history": "연제구 지역은 삼국시대에 이미 대형 봉분을 조성한 세력이 자리 잡아, 배산 능선을 따라 18기의 큰 무덤이 늘어선 연산동 고분군과 이중 토성인 배산성지가 그 흔적으로 남아 있습니다. 조선시대에는 동래도호부 관할의 연산·거제 일대 농촌 마을이었고, 근대 이후에는 동래군과 동래구에 속했습니다. 1995년 3월 1일 동래구에서 연산동·거제동 일원이 분리되어 연제구가 신설되면서 독립 자치구로 출범했습니다. 1998년 부산광역시청이 연산동으로 이전해 오면서 시 행정의 중심이 이곳으로 옮겨졌고, 잇따라 법원·검찰청 등 사법기관이 거제동에 들어서며 법조타운이 형성되었습니다. 2017년에는 연산동 고분군이 사적 제539호로 승격 지정되어 그 역사적 가치를 공식적으로 인정받았습니다. 이렇게 고대 고분 문화와 현대 광역행정 기능이 겹쳐 있는 것이 연제구 역사의 두드러진 특징입니다.",
+  "intro": "연제구는 부산광역시청과 부산고등법원·부산지방법원·부산지방검찰청이 한데 모인 부산의 행정·사법 중심지입니다. 구 이름은 연산동(蓮山洞)의 '연(蓮)'과 거제동(巨堤洞)의 '제(堤)'를 한 글자씩 딴 것으로, 두 법정동의 머리글자를 합쳐 지은 신생구의 지명입니다. 1998년 부산시청이 중구에서 연산동으로 옮겨오면서 관공서와 법조타운이 집적된 광역행정 거점으로 성격이 굳어졌습니다. 도심 한복판을 온천천이 흐르고 배산과 황령산 자락이 남쪽을 감싸, 관청가의 분주함과 하천 산책로의 여유가 공존합니다. 삼국시대 거대 봉분이 남은 연산동 고분군과 배산성지가 있어 부산에서 손꼽히는 고대 유적 밀집지이기도 합니다. 아시안게임과 월드컵을 치른 부산아시아드주경기장이 거제동에 자리해 체육·문화 행사의 무대 역할도 겸합니다.",
+  "landmarks": [
+    {
+      "description": "배산 능선을 따라 18기의 거대한 봉분이 일렬로 늘어선 삼국시대 고총고분군으로, 부산에서 유일하게 큰 봉분이 남은 유적입니다. 2017년 사적 제539호로 지정되었으며 인근에 출토 유물을 소개하는 전시관이 있습니다.",
+      "name": "연산동 고분군"
+    },
+    {
+      "description": "거제동에 위치한 5만여 석 규모의 반개방형 하프돔 종합경기장으로, 2002년 부산 아시안게임 주경기장이자 한일월드컵 경기장으로 쓰였습니다. 현재는 축구·대형 콘서트와 아시아송페스티벌 등 행사가 열립니다.",
+      "name": "부산아시아드주경기장"
+    },
+    {
+      "description": "배산의 허리와 정상을 쌍가락지 모양으로 두른 이중 토성으로, 삼국시대에 축조된 부산의 대표적 고대 산성입니다. 정상에서는 온천천 유역과 동래 일대를 조망할 수 있습니다.",
+      "name": "배산성지"
+    },
+    {
+      "description": "연산동의 부산광역시청과 거제동의 부산고등·지방법원, 검찰청이 모여 형성된 부산 행정·사법의 심장부입니다. 광역 관공서가 밀집한 부산의 대표적 관청가로 꼽힙니다.",
+      "name": "부산광역시청·연제구 법조타운"
+    }
+  ],
+  "nature_rest": [
+    {
+      "description": "구를 관통하는 온천천 강변에 조성된 자연친화형 하천공원으로, 자전거도로와 산책로, 야생화 단지가 이어져 도심 속 대표 휴식처로 사랑받습니다.",
+      "name": "온천천 시민공원"
+    },
+    {
+      "description": "배산성지와 연산동 고분군을 아우르며 배산 자락을 도는 완만한 숲길로, 역사 유적과 도심 조망을 함께 즐길 수 있는 시민 산책 코스입니다.",
+      "name": "배산 둘레길"
+    },
+    {
+      "description": "연제구 남쪽 경계를 이루는 산으로 금련산과 이어지며, 정상 부근에서는 부산 시가지와 광안대교 일대를 한눈에 조망할 수 있어 인근 주민의 등산·야경 명소로 꼽힙니다.",
+      "name": "황령산"
+    },
+    {
+      "description": "연제구가 조성한 지역 도보 코스로, 온천천과 배산 일대의 명소를 잇는 산책·먹거리 탐방길입니다. 주민과 관광객이 걸으며 지역을 둘러볼 수 있게 안내됩니다.",
+      "name": "연제맛길·연제둘레길"
+    }
+  ],
+  "org_slug": "kr-busan-yeonje",
+  "sido": "부산광역시",
+  "sigungu": "연제구",
+  "symbols": {
+    "bird": "황새",
+    "flower": "연꽃",
+    "tree": "소나무"
+  },
+  "transport": "연제구는 부산 도심 중앙에 있어 도시철도망이 촘촘하게 지나갑니다. 도시철도 1호선이 남북으로 관통하며 시청역·연산역·교대역이 구내에 있어 부산시청과 법조타운, 연산동 상권으로의 접근을 담당합니다. 도시철도 3호선은 배산역·물만골역·거제역·종합운동장역을 지나며, 연산역에서 1호선과 3호선이 교차하는 환승역 역할을 합니다. 동해선 광역전철은 거제해맞이역과 거제역을 통해 부산아시아드주경기장·법원 방면 접근과 부산 동부권 연결을 맡습니다. 도로는 중앙대로와 반송로·월드컵대로 등 간선이 지나 시청·경기장 방면으로 이어집니다. 종합운동장역과 연산 교차로 일대는 경기·행사 시 대규모 인파가 모이는 교통 결절점이기도 합니다."
+}
+  </script>
 </head>
 <body>
-  <main>
-    <header>
-      <p class="eyebrow">부산광역시</p>
-      <h1>연제구</h1>
-    </header>
-    <div class="content">
-      <section id="intro">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..800&family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+:root{
+  --navy:#000080;
+  --navy-soft:#1a1a99;
+  --navy-tint:#e8e8f5;
+  --paper:#ffffff;
+  --manila:#f4ecd6;
+  --manila-edge:#e2d5b0;
+  --ink:#1a1a2e;
+  --stamp:#b3102a;
+  --line:#c9c2ac;
+}
+
+*{box-sizing:border-box}
+
+#yj-cabinet{
+  font-family:'Nanum Gothic','Roboto Flex',-apple-system,sans-serif;
+  color:var(--ink);
+  background:
+    linear-gradient(180deg,#f7f5ee 0%,#eceadf 100%);
+  padding:clamp(14px,3vw,40px) clamp(10px,3vw,28px) 60px;
+  line-height:1.7;
+  max-width:1180px;
+  margin:0 auto;
+  min-height:100vh;
+}
+
+/* ===== 문서철 헤더 ===== */
+.yj-masthead{
+  border:2px solid var(--navy);
+  background:var(--paper);
+  border-radius:2px;
+  padding:clamp(16px,3vw,26px) clamp(16px,4vw,34px);
+  position:relative;
+  box-shadow:6px 6px 0 rgba(0,0,128,.12);
+}
+.yj-masthead::before{
+  content:"등 록 문 서";
+  position:absolute;top:14px;right:16px;
+  font-size:11px;letter-spacing:.35em;
+  color:var(--navy);border:1px solid var(--navy);
+  padding:3px 8px;border-radius:2px;
+  font-family:'Roboto Flex',sans-serif;
+}
+.yj-doc-no{
+  font-family:'Roboto Flex',sans-serif;
+  font-size:12px;letter-spacing:.15em;color:#555;
+  text-transform:uppercase;margin:0 0 6px;
+}
+.yj-masthead h1{
+  font-family:'Nanum Gothic',sans-serif;
+  font-weight:800;
+  font-size:clamp(26px,5.5vw,46px);
+  color:var(--navy);
+  margin:0 0 8px;
+  letter-spacing:-.01em;
+  line-height:1.15;
+}
+.yj-sub{
+  font-size:clamp(13px,2.4vw,15px);
+  color:#3a3a52;margin:0;max-width:64ch;
+}
+.yj-stamp{
+  position:absolute;bottom:-18px;right:clamp(20px,6vw,60px);
+  width:88px;height:88px;border-radius:50%;
+  border:3px double var(--stamp);color:var(--stamp);
+  display:grid;place-items:center;text-align:center;
+  font-family:'Nanum Gothic',sans-serif;font-weight:800;
+  font-size:12px;letter-spacing:.15em;line-height:1.3;
+  transform:rotate(-11deg);
+  background:rgba(255,255,255,.55);
+  box-shadow:inset 0 0 0 6px rgba(179,16,42,.06);
+  opacity:.9;
+}
+
+/* ===== 캐비닛 안내 ===== */
+.yj-hint{
+  font-family:'Roboto Flex',sans-serif;
+  font-size:12.5px;color:#5a5a6e;
+  margin:26px 2px 10px;display:flex;align-items:center;gap:8px;
+  flex-wrap:wrap;
+}
+.yj-hint b{color:var(--navy)}
+.yj-hint .k{
+  border:1px solid var(--line);background:#fff;border-radius:4px;
+  padding:1px 7px;font-size:11px;color:#333;
+}
+
+/* ===== 탭 레일 (서류철 상단 탭) ===== */
+.yj-rail{
+  display:flex;flex-wrap:wrap;gap:3px;
+  padding:0 clamp(4px,2vw,14px);
+  position:relative;z-index:3;
+  align-items:flex-end;
+  margin-bottom:-2px;
+}
+.yj-tab{
+  font-family:'Nanum Gothic',sans-serif;
+  font-weight:700;font-size:clamp(11px,1.9vw,13.5px);
+  border:2px solid var(--manila-edge);
+  border-bottom:none;
+  background:linear-gradient(180deg,#efe6cc,#e6dabb);
+  color:#6b5f3e;
+  padding:9px 14px 11px;
+  border-radius:8px 8px 0 0;
+  cursor:pointer;
+  position:relative;
+  transform:translateY(6px);
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),background .22s,color .22s,box-shadow .22s;
+  user-select:none;
+  white-space:nowrap;
+  touch-action:none;
+}
+.yj-tab .yj-tabno{
+  font-family:'Roboto Flex',sans-serif;
+  font-size:9.5px;opacity:.7;display:block;letter-spacing:.1em;
+}
+.yj-tab:hover{transform:translateY(2px)}
+.yj-tab[aria-selected="true"]{
+  background:var(--paper);
+  color:var(--navy);
+  border-color:var(--navy);
+  transform:translateY(0);
+  z-index:4;
+  box-shadow:0 -3px 8px rgba(0,0,128,.10);
+}
+.yj-tab[aria-selected="true"]::after{
+  content:"";position:absolute;left:0;right:0;bottom:-3px;height:4px;
+  background:var(--paper);
+}
+.yj-tab.yj-dragging{
+  opacity:.85;box-shadow:0 8px 18px rgba(0,0,0,.22);
+  transform:translateY(-2px) scale(1.04) rotate(-1deg);
+  z-index:20;transition:none;
+}
+.yj-tab.yj-shift{transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+
+/* ===== 폴더 본문 ===== */
+.yj-folder{
+  border:2px solid var(--navy);
+  background:var(--paper);
+  border-radius:0 8px 8px 8px;
+  position:relative;z-index:2;
+  box-shadow:8px 10px 0 rgba(0,0,128,.10);
+  overflow:hidden;
+}
+.yj-folder::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:6px;
+  background:repeating-linear-gradient(90deg,var(--navy) 0 22px,transparent 22px 30px);
+  opacity:.14;
+}
+.yj-manila-strip{
+  background:var(--manila);
+  border-bottom:1px dashed var(--manila-edge);
+  padding:8px clamp(16px,4vw,34px);
+  font-family:'Roboto Flex',sans-serif;
+  font-size:11.5px;letter-spacing:.12em;color:#7a6c45;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+
+/* JS-enhanced 뷰포트 */
+.yj-viewport{padding:clamp(18px,4vw,40px)}
+.yj-viewport.js .yj-sheet{display:none}
+.yj-viewport.js .yj-sheet.yj-active{display:block;animation:yjIn .35s ease}
+@keyframes yjIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 시트 = 하나의 섹션 카드 */
+.yj-sheet{
+  position:relative;
+}
+.yj-sheet::before{
+  content:attr(data-index);
+  position:absolute;top:-6px;right:0;
+  font-family:'Roboto Flex',sans-serif;
+  font-size:52px;font-weight:300;color:var(--navy-tint);
+  line-height:1;pointer-events:none;
+}
+
+/*       <section id="intro">
+        <h2>지역 소개</h2>
+        <p>연제구는 부산광역시청과 부산고등법원·부산지방법원·부산지방검찰청이 한데 모인 부산의 행정·사법 중심지입니다. 구 이름은 연산동(蓮山洞)의 &#x27;연(蓮)&#x27;과 거제동(巨堤洞)의 &#x27;제(堤)&#x27;를 한 글자씩 딴 것으로, 두 법정동의 머리글자를 합쳐 지은 신생구의 지명입니다. 1998년 부산시청이 중구에서 연산동으로 옮겨오면서 관공서와 법조타운이 집적된 광역행정 거점으로 성격이 굳어졌습니다. 도심 한복판을 온천천이 흐르고 배산과 황령산 자락이 남쪽을 감싸, 관청가의 분주함과 하천 산책로의 여유가 공존합니다. 삼국시대 거대 봉분이 남은 연산동 고분군과 배산성지가 있어 부산에서 손꼽히는 고대 유적 밀집지이기도 합니다. 아시안게임과 월드컵을 치른 부산아시아드주경기장이 거제동에 자리해 체육·문화 행사의 무대 역할도 겸합니다.</p>
+      </section>
+      <section id="facts">
+        <h2>주요 통계</h2>
+        <ul class="facts">
+          <li>인구: 약 211,373명 (2025)</li>
+          <li>면적: 12.08 km²</li>
+          <li>신설: 1995-03-01</li>
+        </ul>
+      </section>
+      <section id="history">
+        <h2>역사</h2>
+        <p>연제구 지역은 삼국시대에 이미 대형 봉분을 조성한 세력이 자리 잡아, 배산 능선을 따라 18기의 큰 무덤이 늘어선 연산동 고분군과 이중 토성인 배산성지가 그 흔적으로 남아 있습니다. 조선시대에는 동래도호부 관할의 연산·거제 일대 농촌 마을이었고, 근대 이후에는 동래군과 동래구에 속했습니다. 1995년 3월 1일 동래구에서 연산동·거제동 일원이 분리되어 연제구가 신설되면서 독립 자치구로 출범했습니다. 1998년 부산광역시청이 연산동으로 이전해 오면서 시 행정의 중심이 이곳으로 옮겨졌고, 잇따라 법원·검찰청 등 사법기관이 거제동에 들어서며 법조타운이 형성되었습니다. 2017년에는 연산동 고분군이 사적 제539호로 승격 지정되어 그 역사적 가치를 공식적으로 인정받았습니다. 이렇게 고대 고분 문화와 현대 광역행정 기능이 겹쳐 있는 것이 연제구 역사의 두드러진 특징입니다.</p>
+      </section>
+      <section id="geography">
+        <h2>지리·자연환경</h2>
+        <p>연제구는 부산 도심의 중앙부에 자리하며 동쪽으로 해운대구·수영구, 서쪽으로 부산진구, 남쪽으로 남구, 북쪽으로 동래구와 맞닿아 있습니다. 남쪽에는 배산과 그 너머 황령산·금련산으로 이어지는 산지가 병풍처럼 둘러 있고, 이 산자락이 구의 남부 경계를 이룹니다. 구의 젖줄인 온천천은 금정산 범어사 부근에서 발원해 금정구·동래구를 거쳐 연제구를 관통한 뒤 수영강과 합류하는 약 14.1㎞의 하천으로, 강변을 따라 자전거도로와 야생화 단지가 조성돼 있습니다. 배산에서 북쪽으로 뻗은 낮은 능선과 온천천 주변의 저지대가 만나 시가지가 발달한 구조입니다. 전체 면적은 약 12.08㎢로 부산 자치구 가운데 작은 편에 속해, 산지와 하천을 뺀 평지에 인구와 관청이 조밀하게 들어차 있습니다. 바다에 직접 면하지 않는 내륙형 자치구라는 점도 해안 구들과 구별되는 지형적 특징입니다.</p>
+      </section>
+      <section id="characteristics">
+        <h2>지역 특징</h2>
+        <p>연제구는 인구 약 21만 명(2025년 기준)이 12㎢ 남짓한 좁은 면적에 밀집한 고밀도 주거·행정 도시입니다. 부산광역시청을 비롯해 부산고등법원·지방법원·가정법원·고등검찰청·지방검찰청 등 30곳이 넘는 광역 공공기관이 집중돼, 부산 전역의 행정·사법 수요가 이곳으로 모입니다. 거제동 법조타운을 중심으로 변호사·법무사 사무소와 관련 서비스업이 발달했고, 연산동 로터리 일대는 도심 상업·유흥 상권으로 번화합니다. 관공서 종사자와 유동 인구가 많아 오피스와 아파트가 뒤섞인 도심 배후주거지 성격이 강합니다. 부산아시아드주경기장과 인접한 사직 체육시설군 덕분에 스포츠·대형 이벤트의 배후 생활권이기도 합니다. 제조업 기반보다 행정·법률·상업·서비스가 지역 경제를 이끄는, 부산에서 가장 관청 밀도가 높은 자치구입니다.</p>
+      </section>
+      <section id="landmarks">
+        <h2>대표 명소</h2>
+        <ul>
+          <li><strong>연산동 고분군</strong> — 배산 능선을 따라 18기의 거대한 봉분이 일렬로 늘어선 삼국시대 고총고분군으로, 부산에서 유일하게 큰 봉분이 남은 유적입니다. 2017년 사적 제539호로 지정되었으며 인근에 출토 유물을 소개하는 전시관이 있습니다.</li>
+          <li><strong>부산아시아드주경기장</strong> — 거제동에 위치한 5만여 석 규모의 반개방형 하프돔 종합경기장으로, 2002년 부산 아시안게임 주경기장이자 한일월드컵 경기장으로 쓰였습니다. 현재는 축구·대형 콘서트와 아시아송페스티벌 등 행사가 열립니다.</li>
+          <li><strong>배산성지</strong> — 배산의 허리와 정상을 쌍가락지 모양으로 두른 이중 토성으로, 삼국시대에 축조된 부산의 대표적 고대 산성입니다. 정상에서는 온천천 유역과 동래 일대를 조망할 수 있습니다.</li>
+          <li><strong>부산광역시청·연제구 법조타운</strong> — 연산동의 부산광역시청과 거제동의 부산고등·지방법원, 검찰청이 모여 형성된 부산 행정·사법의 심장부입니다. 광역 관공서가 밀집한 부산의 대표적 관청가로 꼽힙니다.</li>
+        </ul>
+      </section>
+      <section id="heritage">
+        <h2>문화유산·문화시설</h2>
+        <ul>
+          <li><strong>연산동 고분군 (사적 제539호)</strong> — 배산 자락에 18기의 대형 봉분과 1천여 기의 중소형 무덤이 분포하는 삼국시대 고분군으로, 2017년 국가 사적으로 승격 지정된 부산의 핵심 매장문화재입니다.</li>
+          <li><strong>배산성지</strong> — 이중 토성 구조의 삼국시대 산성으로, 발굴을 통해 집수지 등 성곽 시설이 확인된 고대 방어유적입니다. 연산동 고분군과 함께 이 지역 고대 세력의 규모를 보여줍니다.</li>
+          <li><strong>연제고분판타지축제</strong> — 연산동 고분군의 역사 자원을 활용해 연제구가 여는 지역 대표 축제로, 고대 무덤을 테마로 한 체험·공연 프로그램으로 주민과 방문객이 참여합니다.</li>
+          <li><strong>한결아트홀</strong> — 거제동에 자리한 연극 중심의 소극장으로, 지역 극단의 공연과 소규모 문화 행사가 열리는 연제구의 생활밀착형 공연 공간입니다.</li>
+        </ul>
+      </section>
+      <section id="nature">
+        <h2>자연·휴식</h2>
+        <ul>
+          <li><strong>온천천 시민공원</strong> — 구를 관통하는 온천천 강변에 조성된 자연친화형 하천공원으로, 자전거도로와 산책로, 야생화 단지가 이어져 도심 속 대표 휴식처로 사랑받습니다.</li>
+          <li><strong>배산 둘레길</strong> — 배산성지와 연산동 고분군을 아우르며 배산 자락을 도는 완만한 숲길로, 역사 유적과 도심 조망을 함께 즐길 수 있는 시민 산책 코스입니다.</li>
+          <li><strong>황령산</strong> — 연제구 남쪽 경계를 이루는 산으로 금련산과 이어지며, 정상 부근에서는 부산 시가지와 광안대교 일대를 한눈에 조망할 수 있어 인근 주민의 등산·야경 명소로 꼽힙니다.</li>
+          <li><strong>연제맛길·연제둘레길</strong> — 연제구가 조성한 지역 도보 코스로, 온천천과 배산 일대의 명소를 잇는 산책·먹거리 탐방길입니다. 주민과 관광객이 걸으며 지역을 둘러볼 수 있게 안내됩니다.</li>
+        </ul>
+      </section>
+      <section id="transport">
+        <h2>교통</h2>
+        <p>연제구는 부산 도심 중앙에 있어 도시철도망이 촘촘하게 지나갑니다. 도시철도 1호선이 남북으로 관통하며 시청역·연산역·교대역이 구내에 있어 부산시청과 법조타운, 연산동 상권으로의 접근을 담당합니다. 도시철도 3호선은 배산역·물만골역·거제역·종합운동장역을 지나며, 연산역에서 1호선과 3호선이 교차하는 환승역 역할을 합니다. 동해선 광역전철은 거제해맞이역과 거제역을 통해 부산아시아드주경기장·법원 방면 접근과 부산 동부권 연결을 맡습니다. 도로는 중앙대로와 반송로·월드컵대로 등 간선이 지나 시청·경기장 방면으로 이어집니다. 종합운동장역과 연산 교차로 일대는 경기·행사 시 대규모 인파가 모이는 교통 결절점이기도 합니다.</p>
+      </section>
+      <section id="symbols">
+        <h2>지역 상징</h2>
+        <ul class="symbols">
+          <li>구화(꽃): 연꽃</li>
+          <li>구목(나무): 소나무</li>
+          <li>구조(새): 황새</li>
+        </ul>
+      </section>
+      <section id="faq">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>연제구라는 이름은 어떻게 지어졌나요?</summary>
+            <p>연산동의 &#x27;연(蓮)&#x27;과 거제동의 &#x27;제(堤)&#x27;를 한 글자씩 따서 합친 이름으로, 1995년 동래구에서 분리되며 만들어진 신생구의 지명입니다.</p>
+          </details>
+          <details>
+            <summary>연제구가 부산의 행정 중심지라고 불리는 이유는 무엇인가요?</summary>
+            <p>1998년 부산광역시청이 연산동으로 이전했고 부산고등·지방법원과 검찰청 등 광역 사법기관이 거제동에 집중돼, 부산 전역의 행정·사법 기능이 모여 있기 때문입니다.</p>
+          </details>
+          <details>
+            <summary>연산동 고분군은 어떤 유적인가요?</summary>
+            <p>배산 능선을 따라 18기의 거대한 봉분이 늘어선 삼국시대 고분군으로, 부산에서 유일하게 큰 봉분이 남아 있으며 2017년 사적 제539호로 지정되었습니다.</p>
+          </details>
+          <details>
+            <summary>온천천은 어디서 흘러오나요?</summary>
+            <p>금정산 범어사 부근에서 발원해 금정구와 동래구를 거쳐 연제구를 지난 뒤 수영강과 합류하는 약 14.1㎞ 하천으로, 강변에 시민공원과 자전거도로가 조성돼 있습니다.</p>
+          </details>
+          <details>
+            <summary>부산아시아드주경기장에서는 무엇을 하나요?</summary>
+            <p>2002년 부산 아시안게임과 한일월드컵이 열린 5만여 석 규모의 종합경기장으로, 지금은 축구 경기와 대형 콘서트, 아시아송페스티벌 등 문화·체육 행사가 열립니다.</p>
+          </details>
+          <details>
+            <summary>연제구는 지하철로 어떻게 갈 수 있나요?</summary>
+            <p>도시철도 1호선(시청·연산·교대역)과 3호선(배산·물만골·거제·종합운동장역)이 지나며, 연산역에서 1호선과 3호선을 환승할 수 있습니다.</p>
+          </details>
+        </div>
+      </section>
+      <section id="links">
+        <h2>공식 링크</h2>
+        <ul>
+          <li><a href="https://www.yeonje.go.kr/main.do" rel="noopener">부산광역시 연제구청 공식 홈페이지</a></li>
+          <li><a href="https://www.yeonje.go.kr/tour/main.do" rel="noopener">연제구 관광·명소 안내</a></li>
+        </ul>
+      </section>
+      <section id="sources">
+        <h2>출처</h2>
+        <ul class="sources">
+          <li><a href="https://ko.wikipedia.org/wiki/%EC%97%B0%EC%A0%9C%EA%B5%AC" rel="noopener">연제구 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://www.yeonje.go.kr/tour/main.do" rel="noopener">부산 연제구청 공식 홈페이지 - 관광명소</a> (조회 2026-07-08)</li>
+          <li><a href="https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EC%95%84%EC%8B%9C%EC%95%84%EB%93%9C%EC%A3%BC%EA%B2%BD%EA%B8%B0%EC%9E%A5" rel="noopener">부산아시아드주경기장 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://superkts.com/population/data/Busan/Yeonje-gu" rel="noopener">부산광역시 연제구 인구수(2025년) - superkts 인구통계</a> (조회 2026-07-08)</li>
+        </ul>
+      </section> 실제 섹션 타이포 */
+#yj-content section{margin:0 0 26px;scroll-margin-top:20px}
+#yj-content section:last-child{margin-bottom:4px}
+#yj-content h2{
+  font-family:'Nanum Gothic',sans-serif;
+  font-weight:800;font-size:clamp(19px,3.4vw,26px);
+  color:var(--navy);margin:0 0 12px;
+  padding-bottom:8px;border-bottom:2px solid var(--navy);
+  display:flex;align-items:center;gap:10px;
+}
+#yj-content h2::before{
+  content:"";flex:0 0 auto;width:12px;height:12px;
+  background:var(--navy);
+  clip-path:polygon(0 0,100% 0,100% 70%,50% 100%,0 70%);
+}
+#yj-content h3{
+  font-family:'Nanum Gothic',sans-serif;font-weight:700;
+  font-size:clamp(15px,2.6vw,18px);color:var(--navy-soft);
+  margin:20px 0 8px;
+}
+#yj-content p{margin:0 0 12px;font-size:clamp(14px,2.4vw,15.5px)}
+#yj-content a{color:var(--navy-soft);text-decoration:underline;text-underline-offset:2px}
+#yj-content a:hover{color:var(--stamp)}
+
+/* facts / symbols → 대장(臺帳) 표 카드 */
+#yj-content .facts,#yj-content .symbols{
+  list-style:none;padding:0;margin:6px 0 18px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:10px;
+}
+#yj-content .facts li,#yj-content .symbols li{
+  background:var(--manila);
+  border:1px solid var(--manila-edge);
+  border-left:5px solid var(--navy);
+  border-radius:2px;
+  padding:10px 13px;font-size:14px;
+  box-shadow:2px 2px 0 rgba(0,0,128,.06);
+}
+#yj-content .facts strong,#yj-content .symbols strong{
+  display:block;font-family:'Roboto Flex',sans-serif;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--navy);margin-bottom:2px;
+}
+
+/* landmarks/heritage/nature 일반 ul */
+#yj-content ul:not(.facts):not(.symbols){
+  list-style:none;padding:0;margin:6px 0 16px;
+}
+#yj-content ul:not(.facts):not(.symbols) li{
+  position:relative;padding:7px 6px 7px 26px;
+  border-bottom:1px dotted var(--line);font-size:14.5px;
+}
+#yj-content ul:not(.facts):not(.symbols) li::before{
+  content:"▸";position:absolute;left:6px;top:7px;color:var(--stamp);
+}
+
+/* FAQ = 접수/처리 서류 details */
+#yj-content .faq details{
+  border:1px solid var(--line);
+  border-left:5px solid var(--navy);
+  background:#fbfaf4;border-radius:2px;
+  margin:0 0 9px;overflow:hidden;
+}
+#yj-content .faq summary{
+  cursor:pointer;padding:12px 16px;font-weight:700;
+  font-family:'Nanum Gothic',sans-serif;color:var(--navy);
+  list-style:none;position:relative;font-size:15px;
+}
+#yj-content .faq summary::-webkit-details-marker{display:none}
+#yj-content .faq summary::before{
+  content:"問";margin-right:9px;color:#fff;background:var(--navy);
+  font-size:11px;padding:2px 6px;border-radius:2px;vertical-align:middle;
+}
+#yj-content .faq summary::after{
+  content:"+";position:absolute;right:16px;top:11px;font-size:20px;
+  color:var(--stamp);transition:transform .2s;
+}
+#yj-content .faq details[open] summary::after{transform:rotate(45deg)}
+#yj-content .faq details[open] summary{border-bottom:1px dashed var(--line)}
+#yj-content .faq details p{padding:12px 16px;margin:0}
+#yj-content .faq details p::before{
+  content:"答 ";color:var(--stamp);font-weight:800;
+}
+
+#yj-content #sources,#yj-content #links{font-size:13.5px}
+#yj-content #sources{color:#555}
+
+/* 하단 색인 (인쇄용/폴백 네비) */
+.yj-index{
+  margin-top:22px;border-top:2px dashed var(--navy);
+  padding-top:14px;
+  font-family:'Roboto Flex',sans-serif;font-size:12px;color:#555;
+  text-align:center;
+}
+.yj-index a{color:var(--navy);text-decoration:none;margin:0 6px;white-space:nowrap}
+.yj-index a:hover{text-decoration:underline}
+
+.yj-foot{
+  text-align:center;margin-top:30px;
+  font-family:'Roboto Flex',sans-serif;font-size:11.5px;
+  letter-spacing:.1em;color:#8a8a9a;
+}
+
+/* 폴백: JS 없을 때 모든 시트 보이고 탭은 앵커처럼 */
+.yj-viewport:not(.js) .yj-sheet{
+  border-top:1px solid var(--line);padding-top:18px;margin-top:18px;
+}
+.yj-viewport:not(.js) .yj-sheet:first-child{border-top:none;margin-top:0;padding-top:0}
+
+@media (max-width:560px){
+  .yj-stamp{width:66px;height:66px;font-size:10px}
+  .yj-sheet::before{font-size:38px}
+  .yj-rail{gap:2px}
+  .yj-tab{padding:8px 9px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+<div id="yj-cabinet">
+
+  <header class="yj-masthead">
+    <p class="yj-doc-no">DOC. NO. kr-busan-yeonje · 부산광역시 연제구 종합기록</p>
+    <h1>연제구 지역 정보 · 부산광역시</h1>
+    <p class="yj-sub">연제구는 부산광역시청과 부산고등법원·부산지방법원·부산지방검찰청이 한데 모인 부산의 행정·사법 중심지입니다. 구 이름은 연산동(蓮山洞)의 &#x27;연(蓮)&#x27;과 거제동(巨堤洞)의 &#x27;제(堤)&#x27;를 한 글자씩 딴 것으로, 두 법정동의 머리글자를 합쳐 지은 신생구의 지명입니다. 1998년 부산시청이 중구에서 연산동으로 옮겨오면서 관공서와 법조타운이 집적된 광역행정 거점으로 성격이 굳어졌습니다. 도심 한복판을 온천천이 흐르고 배산과 황령산 자락이 남쪽을 감싸, 관청가의 분주함과 하천 산책로의 여유가 공존합니다. 삼국시대 거대 봉분이 남은 연산동 고분군과 배산성지가 있어 부산에서 손꼽히는 고대 유적 밀집지이기도 합니다. 아시안게임과 월드컵을 치른 부산아시아드주경기장이 거제동에 자리해 체육·문화 행사의 무대 역할도 겸합니다.</p>
+    <div class="yj-stamp" aria-hidden="true">연제구<br>기록<br>보존</div>
+  </header>
+
+  <p class="yj-hint">
+    <b>서류철 열람 안내</b> · 상단 <span class="k">탭</span>을 눌러 해당 폴더(섹션)를 펼칩니다.
+    탭은 <span class="k">드래그</span>로 순서를 바꿀 수 있습니다.
+    <span aria-hidden="true">←/→</span> 방향키로도 이동합니다.
+  </p>
+
+  <!-- 서류철 상단 탭 레일 (JS가 채움) -->
+  <nav class="yj-rail" id="yj-rail" role="tablist" aria-label="연제구 문서 탭"></nav>
+
+  <div class="yj-folder">
+    <div class="yj-manila-strip">
+      <span>부산광역시 · 연제구 (連堤區)</span>
+      <span>행정 기록 · 열람용 · kr-busan-yeonje</span>
+    </div>
+
+    <!-- 실제 콘텐츠 뷰포트: JS가 각 섹션을 시트로 감싸 탭에 연결 -->
+    <div class="yj-viewport" id="yj-viewport">
+      <div id="yj-content">
+              <section id="intro">
         <h2>지역 소개</h2>
         <p>연제구는 부산광역시청과 부산고등법원·부산지방법원·부산지방검찰청이 한데 모인 부산의 행정·사법 중심지입니다. 구 이름은 연산동(蓮山洞)의 &#x27;연(蓮)&#x27;과 거제동(巨堤洞)의 &#x27;제(堤)&#x27;를 한 글자씩 딴 것으로, 두 법정동의 머리글자를 합쳐 지은 신생구의 지명입니다. 1998년 부산시청이 중구에서 연산동으로 옮겨오면서 관공서와 법조타운이 집적된 광역행정 거점으로 성격이 굳어졌습니다. 도심 한복판을 온천천이 흐르고 배산과 황령산 자락이 남쪽을 감싸, 관청가의 분주함과 하천 산책로의 여유가 공존합니다. 삼국시대 거대 봉분이 남은 연산동 고분군과 배산성지가 있어 부산에서 손꼽히는 고대 유적 밀집지이기도 합니다. 아시안게임과 월드컵을 치른 부산아시아드주경기장이 거제동에 자리해 체육·문화 행사의 무대 역할도 겸합니다.</p>
       </section>
@@ -253,10 +762,167 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line);
           <li><a href="https://superkts.com/population/data/Busan/Yeonje-gu" rel="noopener">부산광역시 연제구 인구수(2025년) - superkts 인구통계</a> (조회 2026-07-08)</li>
         </ul>
       </section>
+      </div>
+
+      <!-- 폴백/인쇄 색인: JS ON이면 숨김 처리됨 -->
+      <nav class="yj-index" id="yj-index" aria-label="문서 색인"></nav>
     </div>
-    <footer>
-      <p>이 페이지는 공개 자료를 바탕으로 작성된 연제구 지역 정보 페이지입니다.</p>
-    </footer>
-  </main>
+  </div>
+
+  <p class="yj-foot">연제구 종합기록 서류철 · https://kr-busan-yeonje.github.io/</p>
+</div>
+
+<script>
+(function(){
+  var content = document.getElementById('yj-content');
+  var viewport = document.getElementById('yj-viewport');
+  var rail = document.getElementById('yj-rail');
+  var indexNav = document.getElementById('yj-index');
+  if(!content || !viewport || !rail) return;
+
+  // 섹션별 한글 탭 라벨 (없으면 h2 텍스트로 대체)
+  var LABELS = {
+    intro:'지역 소개', facts:'요약 대장', history:'연혁',
+    geography:'지리', characteristics:'특성', landmarks:'명소',
+    heritage:'문화유산', nature:'자연·휴식', transport:'교통',
+    symbols:'상징', faq:'문답', links:'관련 링크', sources:'출처'
+  };
+
+  var sections = Array.prototype.slice.call(content.querySelectorAll('section'));
+  if(!sections.length) return; // 콘텐츠 파싱 실패 시 원본 그대로(접근성 보존)
+
+  viewport.classList.add('js');
+
+  // 각 section을 '시트'로 만들고 탭 생성
+  var tabs = [];
+  sections.forEach(function(sec, i){
+    sec.classList.add('yj-sheet');
+    sec.setAttribute('role','tabpanel');
+    sec.setAttribute('data-index', ('0'+(i+1)).slice(-2));
+    var id = sec.id || ('sec'+i);
+    sec.id = id;
+    var panelId = 'yjpanel-'+id;
+    sec.setAttribute('id', id);
+    sec.setAttribute('aria-labelledby','yjtab-'+id);
+
+    var h2 = sec.querySelector('h2');
+    var label = LABELS[id] || (h2 ? h2.textContent.trim() : ('문서 '+(i+1)));
+
+    var tab = document.createElement('button');
+    tab.className = 'yj-tab';
+    tab.type = 'button';
+    tab.id = 'yjtab-'+id;
+    tab.setAttribute('role','tab');
+    tab.setAttribute('aria-controls', id);
+    tab.setAttribute('aria-selected', i===0 ? 'true':'false');
+    tab.setAttribute('tabindex', i===0 ? '0':'-1');
+    tab.dataset.target = id;
+    tab.innerHTML = '<span class="yj-tabno">FILE '+('0'+(i+1)).slice(-2)+'</span>'+label;
+    rail.appendChild(tab);
+    tabs.push(tab);
+  });
+
+  function activate(id){
+    sections.forEach(function(s){
+      s.classList.toggle('yj-active', s.id===id);
+    });
+    tabs.forEach(function(t){
+      var on = t.dataset.target===id;
+      t.setAttribute('aria-selected', on?'true':'false');
+      t.setAttribute('tabindex', on?'0':'-1');
+    });
+  }
+  activate(sections[0].id);
+
+  // 클릭
+  rail.addEventListener('click', function(e){
+    var t = e.target.closest('.yj-tab');
+    if(!t || t.dataset.suppressClick) return;
+    activate(t.dataset.target);
+    t.focus();
+  });
+
+  // 키보드 좌우 이동
+  rail.addEventListener('keydown', function(e){
+    var order = Array.prototype.slice.call(rail.querySelectorAll('.yj-tab'));
+    var cur = order.indexOf(document.activeElement);
+    if(cur<0) return;
+    var next=-1;
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') next=(cur+1)%order.length;
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp') next=(cur-1+order.length)%order.length;
+    else if(e.key==='Home') next=0;
+    else if(e.key==='End') next=order.length-1;
+    if(next>=0){
+      e.preventDefault();
+      var t=order[next]; t.focus(); activate(t.dataset.target);
+    }
+  });
+
+  // ===== 드래그로 탭 순서 정렬 (포인터 이벤트) =====
+  var drag=null, startX=0, moved=false;
+
+  function onDown(e){
+    var t=e.target.closest('.yj-tab');
+    if(!t) return;
+    drag=t; moved=false;
+    startX=(e.touches?e.touches[0].clientX:e.clientX);
+    t.dataset.suppressClick='';
+    delete t.dataset.suppressClick;
+    document.addEventListener('pointermove',onMove);
+    document.addEventListener('pointerup',onUp);
+    document.addEventListener('pointercancel',onUp);
+  }
+  function onMove(e){
+    if(!drag) return;
+    var x=e.clientX;
+    var dx=x-startX;
+    if(Math.abs(dx)>4){ moved=true; drag.classList.add('yj-dragging'); drag.dataset.suppressClick='1'; }
+    if(!moved) return;
+    // 위치 비교로 형제와 스왑
+    var railTabs=Array.prototype.slice.call(rail.querySelectorAll('.yj-tab'));
+    for(var i=0;i<railTabs.length;i++){
+      var sib=railTabs[i];
+      if(sib===drag) continue;
+      var r=sib.getBoundingClientRect();
+      var mid=r.left+r.width/2;
+      if(dx<0 && x<mid && sib.compareDocumentPosition(drag)&Node.DOCUMENT_POSITION_FOLLOWING){
+        sib.classList.add('yj-shift');
+        rail.insertBefore(drag, sib);
+        startX=x;
+        break;
+      }
+      if(dx>0 && x>mid && sib.compareDocumentPosition(drag)&Node.DOCUMENT_POSITION_PRECEDING){
+        sib.classList.add('yj-shift');
+        rail.insertBefore(drag, sib.nextSibling);
+        startX=x;
+        break;
+      }
+    }
+  }
+  function onUp(){
+    if(drag){
+      drag.classList.remove('yj-dragging');
+      setTimeout(function(){ if(drag){ delete drag.dataset.suppressClick; } drag=null; },0);
+    }
+    Array.prototype.forEach.call(rail.querySelectorAll('.yj-shift'),function(el){el.classList.remove('yj-shift')});
+    document.removeEventListener('pointermove',onMove);
+    document.removeEventListener('pointerup',onUp);
+    document.removeEventListener('pointercancel',onUp);
+  }
+  rail.addEventListener('pointerdown',onDown);
+
+  // ===== 하단 색인 (JS ON일 때도 유용한 점프 링크) =====
+  tabs.forEach(function(t){
+    var a=document.createElement('a');
+    a.href='#'+t.dataset.target;
+    a.textContent=t.textContent.replace(/FILE\s?\d+/,'').trim();
+    a.addEventListener('click',function(ev){ ev.preventDefault(); activate(t.dataset.target); rail.querySelector('[data-target="'+t.dataset.target+'"]').focus(); });
+    indexNav.appendChild(a);
+    indexNav.appendChild(document.createTextNode(' · '));
+  });
+  if(indexNav.lastChild) indexNav.removeChild(indexNav.lastChild);
+
+})();
+</script>
 </body>
 </html>
