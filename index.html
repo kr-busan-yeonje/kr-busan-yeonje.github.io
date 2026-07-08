@@ -267,6 +267,42 @@ body { padding-top: var(--cg-strip-h); }
 .cg-colophon-note { margin: 4px 0 0; color: #9a9aa8; }
 @media (max-width: 640px) { .cg-strip-label { display: none; } }
 @media (prefers-reduced-motion: reduce) { .cg-skip { transition: none; } }
+
+/* ---- Mobile reading view (touch / small screens) ------------------------------------- */
+/* The immersive per-구 template is desktop-only. On touch devices and narrow screens the
+   .cg-read view is shown instead — it uses only safe, high-contrast CSS so text can never
+   go invisible on iOS Safari (no background-clip:text, backdrop-filter, 100vh, :hover-gated
+   reveals, or mix-blend-mode). Fully namespaced + generator-controlled. */
+.cg-read { display: none; }
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  /* Neutralise immersive templates that lock scrolling / lock the viewport on <body>. */
+  html, body { overflow-x: hidden !important; overflow-y: auto !important; height: auto !important;
+    min-height: 0 !important; position: static !important; touch-action: auto !important; background: #ffffff !important; }
+  .cg-immersive { display: none !important; }
+  .cg-read { display: block; }
+}
+.cg-read { max-width: 720px; margin: 0 auto; padding: 20px 18px 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: #17171f; background: #ffffff; line-height: 1.75; -webkit-text-size-adjust: 100%; }
+.cg-read * { max-width: 100%; box-sizing: border-box; }
+.cg-read-head { padding: 8px 0 16px; border-bottom: 3px solid var(--cg-ra, #2d5bff); margin-bottom: 20px; }
+.cg-read-eyebrow { margin: 0 0 4px; color: var(--cg-rd, #333); font-weight: 700; font-size: 15px; letter-spacing: .02em; }
+.cg-read-head h1 { margin: 0; font-size: clamp(30px, 8vw, 40px); line-height: 1.15; color: #14141c; font-weight: 800; }
+.cg-read h2 { font-size: 20px; margin: 30px 0 10px; padding-left: 11px; color: #14141c; font-weight: 700;
+  border-left: 5px solid var(--cg-ra, #2d5bff); }
+.cg-read p { margin: 0 0 12px; font-size: 17px; color: #23232d; }
+.cg-read section { margin: 0; }
+.cg-read ul { margin: 8px 0 0; padding-left: 20px; }
+.cg-read li { margin: 8px 0; font-size: 16px; color: #23232d; }
+.cg-read li strong { color: #111119; font-weight: 700; }
+.cg-read .facts, .cg-read .symbols { list-style: none; padding: 14px 16px; margin: 8px 0 0;
+  background: #f5f6fa; border: 1px solid #e6e8f0; border-radius: 12px; }
+.cg-read .faq details { border: 1px solid #e6e8f0; border-radius: 10px; padding: 10px 14px; margin: 8px 0; background: #fbfbfd; }
+.cg-read .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; color: #14141c; }
+.cg-read .faq details p { margin: 8px 0 2px; color: #44454f; }
+.cg-read a { color: #1a46d8; word-break: break-word; }
+.cg-read .sources { font-size: 14px; color: #55565f; }
+.cg-read .sources a { color: #3a5bd0; }
 </style>
 </head>
 <body>
@@ -275,6 +311,7 @@ body { padding-top: var(--cg-strip-h); }
     <span class="cg-ad">AD</span><span class="cg-strip-label">후원 파트너</span><span class="cg-strip-list"><a class="cg-strip-item" href="https://ikoffices.com" rel="sponsored noopener" target="_blank">일광오피스</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://mobidicsaju.com" rel="sponsored noopener" target="_blank">모비딕 사주</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://www.foodskorea.com/" rel="sponsored noopener" target="_blank">전국팔도 식품도감</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://myflowmakers.com" rel="sponsored noopener" target="_blank">마이플로우메이커스</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://yeonlijispace.com" rel="sponsored noopener" target="_blank">연리지 인테리어</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://yeonliji.io" rel="sponsored noopener" target="_blank">주식회사 연리지</a><span class="cg-strip-dot" aria-hidden="true">·</span><span class="cg-strip-item cg-strip-text">세무·법률 자문</span></span>
   </aside>
   <div id="cg-main" tabindex="-1"></div>
+  <div class="cg-immersive">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..800&family=Nanum+Gothic:wght@400;700;800&display=swap');
 
@@ -455,121 +492,7 @@ body { padding-top: var(--cg-strip-h); }
   line-height:1;pointer-events:none;
 }
 
-/*       <section id="intro">
-        <h2>지역 소개</h2>
-        <p>연제구는 부산광역시청과 부산고등법원·부산지방법원·부산지방검찰청이 한데 모인 부산의 행정·사법 중심지입니다. 구 이름은 연산동(蓮山洞)의 &#x27;연(蓮)&#x27;과 거제동(巨堤洞)의 &#x27;제(堤)&#x27;를 한 글자씩 딴 것으로, 두 법정동의 머리글자를 합쳐 지은 신생구의 지명입니다. 1998년 부산시청이 중구에서 연산동으로 옮겨오면서 관공서와 법조타운이 집적된 광역행정 거점으로 성격이 굳어졌습니다. 도심 한복판을 온천천이 흐르고 배산과 황령산 자락이 남쪽을 감싸, 관청가의 분주함과 하천 산책로의 여유가 공존합니다. 삼국시대 거대 봉분이 남은 연산동 고분군과 배산성지가 있어 부산에서 손꼽히는 고대 유적 밀집지이기도 합니다. 아시안게임과 월드컵을 치른 부산아시아드주경기장이 거제동에 자리해 체육·문화 행사의 무대 역할도 겸합니다.</p>
-      </section>
-      <section id="facts">
-        <h2>주요 통계</h2>
-        <ul class="facts">
-          <li>인구: 약 211,373명 (2025)</li>
-          <li>면적: 12.08 km²</li>
-          <li>신설: 1995-03-01</li>
-        </ul>
-      </section>
-      <section id="history">
-        <h2>역사</h2>
-        <p>연제구 지역은 삼국시대에 이미 대형 봉분을 조성한 세력이 자리 잡아, 배산 능선을 따라 18기의 큰 무덤이 늘어선 연산동 고분군과 이중 토성인 배산성지가 그 흔적으로 남아 있습니다. 조선시대에는 동래도호부 관할의 연산·거제 일대 농촌 마을이었고, 근대 이후에는 동래군과 동래구에 속했습니다. 1995년 3월 1일 동래구에서 연산동·거제동 일원이 분리되어 연제구가 신설되면서 독립 자치구로 출범했습니다. 1998년 부산광역시청이 연산동으로 이전해 오면서 시 행정의 중심이 이곳으로 옮겨졌고, 잇따라 법원·검찰청 등 사법기관이 거제동에 들어서며 법조타운이 형성되었습니다. 2017년에는 연산동 고분군이 사적 제539호로 승격 지정되어 그 역사적 가치를 공식적으로 인정받았습니다. 이렇게 고대 고분 문화와 현대 광역행정 기능이 겹쳐 있는 것이 연제구 역사의 두드러진 특징입니다.</p>
-      </section>
-      <section id="geography">
-        <h2>지리·자연환경</h2>
-        <p>연제구는 부산 도심의 중앙부에 자리하며 동쪽으로 해운대구·수영구, 서쪽으로 부산진구, 남쪽으로 남구, 북쪽으로 동래구와 맞닿아 있습니다. 남쪽에는 배산과 그 너머 황령산·금련산으로 이어지는 산지가 병풍처럼 둘러 있고, 이 산자락이 구의 남부 경계를 이룹니다. 구의 젖줄인 온천천은 금정산 범어사 부근에서 발원해 금정구·동래구를 거쳐 연제구를 관통한 뒤 수영강과 합류하는 약 14.1㎞의 하천으로, 강변을 따라 자전거도로와 야생화 단지가 조성돼 있습니다. 배산에서 북쪽으로 뻗은 낮은 능선과 온천천 주변의 저지대가 만나 시가지가 발달한 구조입니다. 전체 면적은 약 12.08㎢로 부산 자치구 가운데 작은 편에 속해, 산지와 하천을 뺀 평지에 인구와 관청이 조밀하게 들어차 있습니다. 바다에 직접 면하지 않는 내륙형 자치구라는 점도 해안 구들과 구별되는 지형적 특징입니다.</p>
-      </section>
-      <section id="characteristics">
-        <h2>지역 특징</h2>
-        <p>연제구는 인구 약 21만 명(2025년 기준)이 12㎢ 남짓한 좁은 면적에 밀집한 고밀도 주거·행정 도시입니다. 부산광역시청을 비롯해 부산고등법원·지방법원·가정법원·고등검찰청·지방검찰청 등 30곳이 넘는 광역 공공기관이 집중돼, 부산 전역의 행정·사법 수요가 이곳으로 모입니다. 거제동 법조타운을 중심으로 변호사·법무사 사무소와 관련 서비스업이 발달했고, 연산동 로터리 일대는 도심 상업·유흥 상권으로 번화합니다. 관공서 종사자와 유동 인구가 많아 오피스와 아파트가 뒤섞인 도심 배후주거지 성격이 강합니다. 부산아시아드주경기장과 인접한 사직 체육시설군 덕분에 스포츠·대형 이벤트의 배후 생활권이기도 합니다. 제조업 기반보다 행정·법률·상업·서비스가 지역 경제를 이끄는, 부산에서 가장 관청 밀도가 높은 자치구입니다.</p>
-      </section>
-      <section id="landmarks">
-        <h2>대표 명소</h2>
-        <ul>
-          <li><strong>연산동 고분군</strong> — 배산 능선을 따라 18기의 거대한 봉분이 일렬로 늘어선 삼국시대 고총고분군으로, 부산에서 유일하게 큰 봉분이 남은 유적입니다. 2017년 사적 제539호로 지정되었으며 인근에 출토 유물을 소개하는 전시관이 있습니다.</li>
-          <li><strong>부산아시아드주경기장</strong> — 거제동에 위치한 5만여 석 규모의 반개방형 하프돔 종합경기장으로, 2002년 부산 아시안게임 주경기장이자 한일월드컵 경기장으로 쓰였습니다. 현재는 축구·대형 콘서트와 아시아송페스티벌 등 행사가 열립니다.</li>
-          <li><strong>배산성지</strong> — 배산의 허리와 정상을 쌍가락지 모양으로 두른 이중 토성으로, 삼국시대에 축조된 부산의 대표적 고대 산성입니다. 정상에서는 온천천 유역과 동래 일대를 조망할 수 있습니다.</li>
-          <li><strong>부산광역시청·연제구 법조타운</strong> — 연산동의 부산광역시청과 거제동의 부산고등·지방법원, 검찰청이 모여 형성된 부산 행정·사법의 심장부입니다. 광역 관공서가 밀집한 부산의 대표적 관청가로 꼽힙니다.</li>
-        </ul>
-      </section>
-      <section id="heritage">
-        <h2>문화유산·문화시설</h2>
-        <ul>
-          <li><strong>연산동 고분군 (사적 제539호)</strong> — 배산 자락에 18기의 대형 봉분과 1천여 기의 중소형 무덤이 분포하는 삼국시대 고분군으로, 2017년 국가 사적으로 승격 지정된 부산의 핵심 매장문화재입니다.</li>
-          <li><strong>배산성지</strong> — 이중 토성 구조의 삼국시대 산성으로, 발굴을 통해 집수지 등 성곽 시설이 확인된 고대 방어유적입니다. 연산동 고분군과 함께 이 지역 고대 세력의 규모를 보여줍니다.</li>
-          <li><strong>연제고분판타지축제</strong> — 연산동 고분군의 역사 자원을 활용해 연제구가 여는 지역 대표 축제로, 고대 무덤을 테마로 한 체험·공연 프로그램으로 주민과 방문객이 참여합니다.</li>
-          <li><strong>한결아트홀</strong> — 거제동에 자리한 연극 중심의 소극장으로, 지역 극단의 공연과 소규모 문화 행사가 열리는 연제구의 생활밀착형 공연 공간입니다.</li>
-        </ul>
-      </section>
-      <section id="nature">
-        <h2>자연·휴식</h2>
-        <ul>
-          <li><strong>온천천 시민공원</strong> — 구를 관통하는 온천천 강변에 조성된 자연친화형 하천공원으로, 자전거도로와 산책로, 야생화 단지가 이어져 도심 속 대표 휴식처로 사랑받습니다.</li>
-          <li><strong>배산 둘레길</strong> — 배산성지와 연산동 고분군을 아우르며 배산 자락을 도는 완만한 숲길로, 역사 유적과 도심 조망을 함께 즐길 수 있는 시민 산책 코스입니다.</li>
-          <li><strong>황령산</strong> — 연제구 남쪽 경계를 이루는 산으로 금련산과 이어지며, 정상 부근에서는 부산 시가지와 광안대교 일대를 한눈에 조망할 수 있어 인근 주민의 등산·야경 명소로 꼽힙니다.</li>
-          <li><strong>연제맛길·연제둘레길</strong> — 연제구가 조성한 지역 도보 코스로, 온천천과 배산 일대의 명소를 잇는 산책·먹거리 탐방길입니다. 주민과 관광객이 걸으며 지역을 둘러볼 수 있게 안내됩니다.</li>
-        </ul>
-      </section>
-      <section id="transport">
-        <h2>교통</h2>
-        <p>연제구는 부산 도심 중앙에 있어 도시철도망이 촘촘하게 지나갑니다. 도시철도 1호선이 남북으로 관통하며 시청역·연산역·교대역이 구내에 있어 부산시청과 법조타운, 연산동 상권으로의 접근을 담당합니다. 도시철도 3호선은 배산역·물만골역·거제역·종합운동장역을 지나며, 연산역에서 1호선과 3호선이 교차하는 환승역 역할을 합니다. 동해선 광역전철은 거제해맞이역과 거제역을 통해 부산아시아드주경기장·법원 방면 접근과 부산 동부권 연결을 맡습니다. 도로는 중앙대로와 반송로·월드컵대로 등 간선이 지나 시청·경기장 방면으로 이어집니다. 종합운동장역과 연산 교차로 일대는 경기·행사 시 대규모 인파가 모이는 교통 결절점이기도 합니다.</p>
-      </section>
-      <section id="symbols">
-        <h2>지역 상징</h2>
-        <ul class="symbols">
-          <li>구화(꽃): 연꽃</li>
-          <li>구목(나무): 소나무</li>
-          <li>구조(새): 황새</li>
-        </ul>
-      </section>
-      <section id="faq">
-        <h2>자주 묻는 질문</h2>
-        <div class="faq">
-          <details>
-            <summary>연제구라는 이름은 어떻게 지어졌나요?</summary>
-            <p>연산동의 &#x27;연(蓮)&#x27;과 거제동의 &#x27;제(堤)&#x27;를 한 글자씩 따서 합친 이름으로, 1995년 동래구에서 분리되며 만들어진 신생구의 지명입니다.</p>
-          </details>
-          <details>
-            <summary>연제구가 부산의 행정 중심지라고 불리는 이유는 무엇인가요?</summary>
-            <p>1998년 부산광역시청이 연산동으로 이전했고 부산고등·지방법원과 검찰청 등 광역 사법기관이 거제동에 집중돼, 부산 전역의 행정·사법 기능이 모여 있기 때문입니다.</p>
-          </details>
-          <details>
-            <summary>연산동 고분군은 어떤 유적인가요?</summary>
-            <p>배산 능선을 따라 18기의 거대한 봉분이 늘어선 삼국시대 고분군으로, 부산에서 유일하게 큰 봉분이 남아 있으며 2017년 사적 제539호로 지정되었습니다.</p>
-          </details>
-          <details>
-            <summary>온천천은 어디서 흘러오나요?</summary>
-            <p>금정산 범어사 부근에서 발원해 금정구와 동래구를 거쳐 연제구를 지난 뒤 수영강과 합류하는 약 14.1㎞ 하천으로, 강변에 시민공원과 자전거도로가 조성돼 있습니다.</p>
-          </details>
-          <details>
-            <summary>부산아시아드주경기장에서는 무엇을 하나요?</summary>
-            <p>2002년 부산 아시안게임과 한일월드컵이 열린 5만여 석 규모의 종합경기장으로, 지금은 축구 경기와 대형 콘서트, 아시아송페스티벌 등 문화·체육 행사가 열립니다.</p>
-          </details>
-          <details>
-            <summary>연제구는 지하철로 어떻게 갈 수 있나요?</summary>
-            <p>도시철도 1호선(시청·연산·교대역)과 3호선(배산·물만골·거제·종합운동장역)이 지나며, 연산역에서 1호선과 3호선을 환승할 수 있습니다.</p>
-          </details>
-        </div>
-      </section>
-      <section id="links">
-        <h2>공식 링크</h2>
-        <ul>
-          <li><a href="https://www.yeonje.go.kr/main.do" rel="noopener">부산광역시 연제구청 공식 홈페이지</a></li>
-          <li><a href="https://www.yeonje.go.kr/tour/main.do" rel="noopener">연제구 관광·명소 안내</a></li>
-        </ul>
-      </section>
-      <section id="github">
-        <h2>GitHub</h2>
-        <ul>
-          <li><a href="https://github.com/kr-busan-yeonje" rel="noopener">GitHub 조직: kr-busan-yeonje</a></li>
-          <li><a href="https://github.com/kr-busan-yeonje/kr-busan-yeonje.github.io" rel="noopener">이 사이트 저장소</a></li>
-        </ul>
-      </section>
-      <section id="sources">
-        <h2>출처</h2>
-        <ul class="sources">
-          <li><a href="https://ko.wikipedia.org/wiki/%EC%97%B0%EC%A0%9C%EA%B5%AC" rel="noopener">연제구 - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="https://www.yeonje.go.kr/tour/main.do" rel="noopener">부산 연제구청 공식 홈페이지 - 관광명소</a> (조회 2026-07-08)</li>
-          <li><a href="https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EC%95%84%EC%8B%9C%EC%95%84%EB%93%9C%EC%A3%BC%EA%B2%BD%EA%B8%B0%EC%9E%A5" rel="noopener">부산아시아드주경기장 - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="https://superkts.com/population/data/Busan/Yeonje-gu" rel="noopener">부산광역시 연제구 인구수(2025년) - superkts 인구통계</a> (조회 2026-07-08)</li>
-        </ul>
-      </section> 실제 섹션 타이포 */
+/* 콘텐츠 실제 섹션 타이포 */
 #yj-content section{margin:0 0 26px;scroll-margin-top:20px}
 #yj-content section:last-child{margin-bottom:4px}
 #yj-content h2{
@@ -993,6 +916,130 @@ body { padding-top: var(--cg-strip-h); }
 
 })();
 </script>
+  </div>
+  <main class="cg-read" id="cg-read" role="main" lang="ko" style="--cg-ra:#852bab;--cg-ra2:#d039a8;--cg-rd:#441957">
+    <header class="cg-read-head">
+      <p class="cg-read-eyebrow">부산광역시</p>
+      <h1>연제구</h1>
+    </header>
+    <div class="cg-read-body">
+      <section id="r-intro">
+        <h2>지역 소개</h2>
+        <p>연제구는 부산광역시청과 부산고등법원·부산지방법원·부산지방검찰청이 한데 모인 부산의 행정·사법 중심지입니다. 구 이름은 연산동(蓮山洞)의 &#x27;연(蓮)&#x27;과 거제동(巨堤洞)의 &#x27;제(堤)&#x27;를 한 글자씩 딴 것으로, 두 법정동의 머리글자를 합쳐 지은 신생구의 지명입니다. 1998년 부산시청이 중구에서 연산동으로 옮겨오면서 관공서와 법조타운이 집적된 광역행정 거점으로 성격이 굳어졌습니다. 도심 한복판을 온천천이 흐르고 배산과 황령산 자락이 남쪽을 감싸, 관청가의 분주함과 하천 산책로의 여유가 공존합니다. 삼국시대 거대 봉분이 남은 연산동 고분군과 배산성지가 있어 부산에서 손꼽히는 고대 유적 밀집지이기도 합니다. 아시안게임과 월드컵을 치른 부산아시아드주경기장이 거제동에 자리해 체육·문화 행사의 무대 역할도 겸합니다.</p>
+      </section>
+      <section id="r-facts">
+        <h2>주요 통계</h2>
+        <ul class="facts">
+          <li>인구: 약 211,373명 (2025)</li>
+          <li>면적: 12.08 km²</li>
+          <li>신설: 1995-03-01</li>
+        </ul>
+      </section>
+      <section id="r-history">
+        <h2>역사</h2>
+        <p>연제구 지역은 삼국시대에 이미 대형 봉분을 조성한 세력이 자리 잡아, 배산 능선을 따라 18기의 큰 무덤이 늘어선 연산동 고분군과 이중 토성인 배산성지가 그 흔적으로 남아 있습니다. 조선시대에는 동래도호부 관할의 연산·거제 일대 농촌 마을이었고, 근대 이후에는 동래군과 동래구에 속했습니다. 1995년 3월 1일 동래구에서 연산동·거제동 일원이 분리되어 연제구가 신설되면서 독립 자치구로 출범했습니다. 1998년 부산광역시청이 연산동으로 이전해 오면서 시 행정의 중심이 이곳으로 옮겨졌고, 잇따라 법원·검찰청 등 사법기관이 거제동에 들어서며 법조타운이 형성되었습니다. 2017년에는 연산동 고분군이 사적 제539호로 승격 지정되어 그 역사적 가치를 공식적으로 인정받았습니다. 이렇게 고대 고분 문화와 현대 광역행정 기능이 겹쳐 있는 것이 연제구 역사의 두드러진 특징입니다.</p>
+      </section>
+      <section id="r-geography">
+        <h2>지리·자연환경</h2>
+        <p>연제구는 부산 도심의 중앙부에 자리하며 동쪽으로 해운대구·수영구, 서쪽으로 부산진구, 남쪽으로 남구, 북쪽으로 동래구와 맞닿아 있습니다. 남쪽에는 배산과 그 너머 황령산·금련산으로 이어지는 산지가 병풍처럼 둘러 있고, 이 산자락이 구의 남부 경계를 이룹니다. 구의 젖줄인 온천천은 금정산 범어사 부근에서 발원해 금정구·동래구를 거쳐 연제구를 관통한 뒤 수영강과 합류하는 약 14.1㎞의 하천으로, 강변을 따라 자전거도로와 야생화 단지가 조성돼 있습니다. 배산에서 북쪽으로 뻗은 낮은 능선과 온천천 주변의 저지대가 만나 시가지가 발달한 구조입니다. 전체 면적은 약 12.08㎢로 부산 자치구 가운데 작은 편에 속해, 산지와 하천을 뺀 평지에 인구와 관청이 조밀하게 들어차 있습니다. 바다에 직접 면하지 않는 내륙형 자치구라는 점도 해안 구들과 구별되는 지형적 특징입니다.</p>
+      </section>
+      <section id="r-characteristics">
+        <h2>지역 특징</h2>
+        <p>연제구는 인구 약 21만 명(2025년 기준)이 12㎢ 남짓한 좁은 면적에 밀집한 고밀도 주거·행정 도시입니다. 부산광역시청을 비롯해 부산고등법원·지방법원·가정법원·고등검찰청·지방검찰청 등 30곳이 넘는 광역 공공기관이 집중돼, 부산 전역의 행정·사법 수요가 이곳으로 모입니다. 거제동 법조타운을 중심으로 변호사·법무사 사무소와 관련 서비스업이 발달했고, 연산동 로터리 일대는 도심 상업·유흥 상권으로 번화합니다. 관공서 종사자와 유동 인구가 많아 오피스와 아파트가 뒤섞인 도심 배후주거지 성격이 강합니다. 부산아시아드주경기장과 인접한 사직 체육시설군 덕분에 스포츠·대형 이벤트의 배후 생활권이기도 합니다. 제조업 기반보다 행정·법률·상업·서비스가 지역 경제를 이끄는, 부산에서 가장 관청 밀도가 높은 자치구입니다.</p>
+      </section>
+      <section id="r-landmarks">
+        <h2>대표 명소</h2>
+        <ul>
+          <li><strong>연산동 고분군</strong> — 배산 능선을 따라 18기의 거대한 봉분이 일렬로 늘어선 삼국시대 고총고분군으로, 부산에서 유일하게 큰 봉분이 남은 유적입니다. 2017년 사적 제539호로 지정되었으며 인근에 출토 유물을 소개하는 전시관이 있습니다.</li>
+          <li><strong>부산아시아드주경기장</strong> — 거제동에 위치한 5만여 석 규모의 반개방형 하프돔 종합경기장으로, 2002년 부산 아시안게임 주경기장이자 한일월드컵 경기장으로 쓰였습니다. 현재는 축구·대형 콘서트와 아시아송페스티벌 등 행사가 열립니다.</li>
+          <li><strong>배산성지</strong> — 배산의 허리와 정상을 쌍가락지 모양으로 두른 이중 토성으로, 삼국시대에 축조된 부산의 대표적 고대 산성입니다. 정상에서는 온천천 유역과 동래 일대를 조망할 수 있습니다.</li>
+          <li><strong>부산광역시청·연제구 법조타운</strong> — 연산동의 부산광역시청과 거제동의 부산고등·지방법원, 검찰청이 모여 형성된 부산 행정·사법의 심장부입니다. 광역 관공서가 밀집한 부산의 대표적 관청가로 꼽힙니다.</li>
+        </ul>
+      </section>
+      <section id="r-heritage">
+        <h2>문화유산·문화시설</h2>
+        <ul>
+          <li><strong>연산동 고분군 (사적 제539호)</strong> — 배산 자락에 18기의 대형 봉분과 1천여 기의 중소형 무덤이 분포하는 삼국시대 고분군으로, 2017년 국가 사적으로 승격 지정된 부산의 핵심 매장문화재입니다.</li>
+          <li><strong>배산성지</strong> — 이중 토성 구조의 삼국시대 산성으로, 발굴을 통해 집수지 등 성곽 시설이 확인된 고대 방어유적입니다. 연산동 고분군과 함께 이 지역 고대 세력의 규모를 보여줍니다.</li>
+          <li><strong>연제고분판타지축제</strong> — 연산동 고분군의 역사 자원을 활용해 연제구가 여는 지역 대표 축제로, 고대 무덤을 테마로 한 체험·공연 프로그램으로 주민과 방문객이 참여합니다.</li>
+          <li><strong>한결아트홀</strong> — 거제동에 자리한 연극 중심의 소극장으로, 지역 극단의 공연과 소규모 문화 행사가 열리는 연제구의 생활밀착형 공연 공간입니다.</li>
+        </ul>
+      </section>
+      <section id="r-nature">
+        <h2>자연·휴식</h2>
+        <ul>
+          <li><strong>온천천 시민공원</strong> — 구를 관통하는 온천천 강변에 조성된 자연친화형 하천공원으로, 자전거도로와 산책로, 야생화 단지가 이어져 도심 속 대표 휴식처로 사랑받습니다.</li>
+          <li><strong>배산 둘레길</strong> — 배산성지와 연산동 고분군을 아우르며 배산 자락을 도는 완만한 숲길로, 역사 유적과 도심 조망을 함께 즐길 수 있는 시민 산책 코스입니다.</li>
+          <li><strong>황령산</strong> — 연제구 남쪽 경계를 이루는 산으로 금련산과 이어지며, 정상 부근에서는 부산 시가지와 광안대교 일대를 한눈에 조망할 수 있어 인근 주민의 등산·야경 명소로 꼽힙니다.</li>
+          <li><strong>연제맛길·연제둘레길</strong> — 연제구가 조성한 지역 도보 코스로, 온천천과 배산 일대의 명소를 잇는 산책·먹거리 탐방길입니다. 주민과 관광객이 걸으며 지역을 둘러볼 수 있게 안내됩니다.</li>
+        </ul>
+      </section>
+      <section id="r-transport">
+        <h2>교통</h2>
+        <p>연제구는 부산 도심 중앙에 있어 도시철도망이 촘촘하게 지나갑니다. 도시철도 1호선이 남북으로 관통하며 시청역·연산역·교대역이 구내에 있어 부산시청과 법조타운, 연산동 상권으로의 접근을 담당합니다. 도시철도 3호선은 배산역·물만골역·거제역·종합운동장역을 지나며, 연산역에서 1호선과 3호선이 교차하는 환승역 역할을 합니다. 동해선 광역전철은 거제해맞이역과 거제역을 통해 부산아시아드주경기장·법원 방면 접근과 부산 동부권 연결을 맡습니다. 도로는 중앙대로와 반송로·월드컵대로 등 간선이 지나 시청·경기장 방면으로 이어집니다. 종합운동장역과 연산 교차로 일대는 경기·행사 시 대규모 인파가 모이는 교통 결절점이기도 합니다.</p>
+      </section>
+      <section id="r-symbols">
+        <h2>지역 상징</h2>
+        <ul class="symbols">
+          <li>구화(꽃): 연꽃</li>
+          <li>구목(나무): 소나무</li>
+          <li>구조(새): 황새</li>
+        </ul>
+      </section>
+      <section id="r-faq">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>연제구라는 이름은 어떻게 지어졌나요?</summary>
+            <p>연산동의 &#x27;연(蓮)&#x27;과 거제동의 &#x27;제(堤)&#x27;를 한 글자씩 따서 합친 이름으로, 1995년 동래구에서 분리되며 만들어진 신생구의 지명입니다.</p>
+          </details>
+          <details>
+            <summary>연제구가 부산의 행정 중심지라고 불리는 이유는 무엇인가요?</summary>
+            <p>1998년 부산광역시청이 연산동으로 이전했고 부산고등·지방법원과 검찰청 등 광역 사법기관이 거제동에 집중돼, 부산 전역의 행정·사법 기능이 모여 있기 때문입니다.</p>
+          </details>
+          <details>
+            <summary>연산동 고분군은 어떤 유적인가요?</summary>
+            <p>배산 능선을 따라 18기의 거대한 봉분이 늘어선 삼국시대 고분군으로, 부산에서 유일하게 큰 봉분이 남아 있으며 2017년 사적 제539호로 지정되었습니다.</p>
+          </details>
+          <details>
+            <summary>온천천은 어디서 흘러오나요?</summary>
+            <p>금정산 범어사 부근에서 발원해 금정구와 동래구를 거쳐 연제구를 지난 뒤 수영강과 합류하는 약 14.1㎞ 하천으로, 강변에 시민공원과 자전거도로가 조성돼 있습니다.</p>
+          </details>
+          <details>
+            <summary>부산아시아드주경기장에서는 무엇을 하나요?</summary>
+            <p>2002년 부산 아시안게임과 한일월드컵이 열린 5만여 석 규모의 종합경기장으로, 지금은 축구 경기와 대형 콘서트, 아시아송페스티벌 등 문화·체육 행사가 열립니다.</p>
+          </details>
+          <details>
+            <summary>연제구는 지하철로 어떻게 갈 수 있나요?</summary>
+            <p>도시철도 1호선(시청·연산·교대역)과 3호선(배산·물만골·거제·종합운동장역)이 지나며, 연산역에서 1호선과 3호선을 환승할 수 있습니다.</p>
+          </details>
+        </div>
+      </section>
+      <section id="r-links">
+        <h2>공식 링크</h2>
+        <ul>
+          <li><a href="https://www.yeonje.go.kr/main.do" rel="noopener">부산광역시 연제구청 공식 홈페이지</a></li>
+          <li><a href="https://www.yeonje.go.kr/tour/main.do" rel="noopener">연제구 관광·명소 안내</a></li>
+        </ul>
+      </section>
+      <section id="r-github">
+        <h2>GitHub</h2>
+        <ul>
+          <li><a href="https://github.com/kr-busan-yeonje" rel="noopener">GitHub 조직: kr-busan-yeonje</a></li>
+          <li><a href="https://github.com/kr-busan-yeonje/kr-busan-yeonje.github.io" rel="noopener">이 사이트 저장소</a></li>
+        </ul>
+      </section>
+      <section id="r-sources">
+        <h2>출처</h2>
+        <ul class="sources">
+          <li><a href="https://ko.wikipedia.org/wiki/%EC%97%B0%EC%A0%9C%EA%B5%AC" rel="noopener">연제구 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://www.yeonje.go.kr/tour/main.do" rel="noopener">부산 연제구청 공식 홈페이지 - 관광명소</a> (조회 2026-07-08)</li>
+          <li><a href="https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EC%95%84%EC%8B%9C%EC%95%84%EB%93%9C%EC%A3%BC%EA%B2%BD%EA%B8%B0%EC%9E%A5" rel="noopener">부산아시아드주경기장 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://superkts.com/population/data/Busan/Yeonje-gu" rel="noopener">부산광역시 연제구 인구수(2025년) - superkts 인구통계</a> (조회 2026-07-08)</li>
+        </ul>
+      </section>
+    </div>
+  </main>
   <aside class="cg-sponsors" aria-label="후원 파트너 상세">
     <p class="cg-spon-head"><span class="cg-ad">AD</span> 후원 파트너 <small>이 링크는 광고이며 편집상의 추천이 아닙니다 (rel=&quot;sponsored&quot;).</small></p>
     <ul class="cg-spon-grid">
